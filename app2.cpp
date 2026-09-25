@@ -3,9 +3,8 @@
 using namespace std;
 int main() {
     string filename;
-    cin >> filename; //comment1
+    cin >> filename; 
     Image image(filename);
-
     for (int i = 0;i < image.width;++i) {
         for (int j = 0;j < image.height;++j) {
             unsigned int avg = 0;
@@ -18,6 +17,5 @@ int main() {
             }
         }
     }
-    
     image.saveImage("sara.jpg");
 }
