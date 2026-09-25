@@ -9,7 +9,7 @@ void makeframe (Image& img) {
                 for (int c=0 ; c<3 ; ++c) {
                     if (c==0) img.setPixel(j,i,c,128);
                     if (c==1) img.setPixel(j,i,c,127);
-                    if (c==2) img.setPixel(j,i,c,0);
+                    if (c==2) img.setPixel(j,i,c,127);
                 }
             }
         }
