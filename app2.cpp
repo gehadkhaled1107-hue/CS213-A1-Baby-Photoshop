@@ -17,5 +17,5 @@ int main() {
             }
         }
     }
-    image.saveImage("sara.jpg");
+    image.saveImage("filter1.jpg");
 }
