@@ -21,5 +21,5 @@ int main() {
             }
         }
     }
-    resized_image.saveImage("sara.jpg"); //filter8
+    resized_image.saveImage("filter8.jpg"); //filter8
 }
