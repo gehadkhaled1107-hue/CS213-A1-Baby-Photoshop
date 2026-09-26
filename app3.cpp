@@ -1,10 +1,6 @@
-#include <iostream>
 #include "Image_Class.h"
 using namespace std;
-int main() {
-    string filename;
-    cin >> filename; 
-    Image image(filename);
+void filter2 (Image& image) {
     for (int i = 0;i < image.width;++i) {
         for (int j = 0;j < image.height;++j) {
             unsigned int avg = 0;
@@ -20,5 +16,11 @@ int main() {
             }
         }
     }
+}
+int main() {
+    string filename;
+    cin >> filename; 
+    Image image(filename);
+    filter2(image);
     image.saveImage("filter2.jpg"); //filter2
 }
