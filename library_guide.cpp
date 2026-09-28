@@ -322,4 +322,5 @@ int main() {
  *     rectangular ones
  *   - #include "Image_Class.h" in more than one .cpp file -> linker errors
  * ============================================================================
+ * 
  */
