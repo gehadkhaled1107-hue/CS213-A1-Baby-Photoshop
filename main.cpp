@@ -84,6 +84,18 @@ void edges(Image& img) {
     }
 }
 
+void den(Image& img) {
+    for (int i=0 ; i<img.height ; ++i) {
+        for (int j=0 ; j<img.width ; ++j) {
+            if (i%4!=0) {
+                for (int c=0 ; c<3 ; ++c) {
+                    img.setPixel(j,i,c,img.getPixel(j,i,c)*0.5);
+                }
+            }
+        }
+    }
+}
+
 using namespace std;
 
 int main()
@@ -96,7 +108,7 @@ int main()
     cout << "Enter image new name:" << endl;
     cin >> newname;
     img.loadNewImage(name);
-    edges(img);
+    den(img);
     img.saveImage(newname);
 }
 
