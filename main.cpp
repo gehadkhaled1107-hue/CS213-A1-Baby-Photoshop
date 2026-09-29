@@ -38,17 +38,48 @@ void rotation(Image& img , int degree) {
 }
 
 
-void makeframe(Image& img) {
+void makeframe(Image& img , int n) {
+    if (n==1) {
+        for (int i=0 ; i<img.height ; ++i) {
+            for (int j=0 ; j<img.width ; ++j) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (i<15 || j<15 || i>=img.height-15 || j>=img.width-15 )  {
+                       if(c==0) img.setPixel(j,i,c,img.width/(255*i));
+                       if(c==1) img.setPixel(j,i,c,img.height/(255*j));
+                       if(c==2) img.setPixel(j,i,c,255-(i+j));
+                    }
+                }
+
+            }
+       }
+    }
+    else {
+
+    }
+}
+
+void edges(Image& img) {
     for (int i=0 ; i<img.height ; ++i) {
         for (int j=0 ; j<img.width ; ++j) {
+            int a=(img.getPixel(j,i,0)+img.getPixel(j,i,1)+img.getPixel(j,i,2))/3;
             for (int c=0 ; c<3 ; ++c) {
-                if (i<15 || j<15 || i>=img.height-15 || j>=img.width-15 || (i<=41&&j<=41) || (i>=img.height-41&& j>=img.width-41))  {
-                    if(c==0) img.setPixel(j,i,c,200);
-                    if(c==1) img.setPixel(j,i,c,127);
-                    if(c==2) img.setPixel(j,i,c,127);
+                img.setPixel(j,i,c,a);
+            }
+        }
+    }
+    Image newimg=img;
+    for (int i=1 ; i<img.height-1 ; ++i) {
+        for (int j=1 ; j<img.width-1 ; ++j) {
+            if (abs(newimg.getPixel(j,i,0)-newimg.getPixel(j-1,i,0))>=20 || abs(newimg.getPixel(j,i,0)-newimg.getPixel(j,i-1,0))>=20 ) {
+                for (int c=0 ; c<3 ; ++c) {
+                    img.setPixel(j,i,c,0);
                 }
             }
-
+            else {
+                for (int c=0 ; c<3 ; ++c) {
+                    img.setPixel(j,i,c,255);
+                }
+            }
         }
     }
 }
@@ -65,7 +96,7 @@ int main()
     cout << "Enter image new name:" << endl;
     cin >> newname;
     img.loadNewImage(name);
-    makeframe(img);
+    edges(img);
     img.saveImage(newname);
 }
 
