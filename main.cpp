@@ -243,9 +243,60 @@ void applydark_light(string file_name){
     }
 }
 
+void Black_and_White(Image& img) {
+    for (int i = 0;i < img.width;++i) {
+        for (int j = 0;j < img.height;++j) {
+            unsigned int avg = 0;
+            for (int k = 0;k < 3;++k) {  
+                avg += img(i,j,k);
+            }
+            avg = avg / 3;
+            int value;
+            if (avg >= 128) value = 255;
+            else value = 0;
+            for (int k = 0;k < 3;++k) {
+                img(i,j,k) = value;
+            }
+        }
+    }
+}
 
+void applyBlack_and_White(string file_name) {
+    Image img(file_name);
+    Black_and_White(img);
+    cout << "Enter image new name : " << endl;
+    cin >> newname;
+    img.saveImage(newname);
+    cout << "The image was saved!" << endl;
+}
 
+void resizing_images(Image& img,Image& resized_img,newW,newH) {
+    float scaleW = (float)img.width / newW;
+    float scaleH = (float)img.height / newH;
+    for (int X = 0;X < newW;++X) {
+        for (int Y = 0;Y < newH;++Y) {
+            int orgX = (int)(X * scaleW);
+            int orgY = (int)(Y * scaleH);
+            if (orgX >= img.width) orgX = img.width -1;
+            if (orgY >= img.height) orgY = img.height - 1;
+            for (int k = 0;k < 3;++k) {
+                resized_img(X,Y,k) = img(orgX,orgY,k);
+            }
+        }
+    }
+}
 
+void applyresizing_images(string file_name) {
+    Image img(file_name);
+    int newW,newH;
+    cin >> newW >> newH;
+    Image resized_image(newW,newH);
+    resizing_images(img,resized_image,newW,newH);
+    cout << "Enter image new name : " << endl;
+    cin >> newname;
+    resized_img.saveImage(newname);
+    cout << "The image was saved!" << endl;
+}
 void displayMenu() {
     cout << "\nWELCOME TO BABY PHOTOSHOP\n";
     cout << "Select Your Filter:\n";
@@ -253,8 +304,10 @@ void displayMenu() {
     cout << "[2] Flip Filter\n";
     cout << "[3] Rotation Filter\n";
     cout << "[4] Television Filter\n";
-    cout << '[5] Invert Image Filter \n";
-    cout << '[6] Darken and Lighten Filter \n";
+    cout << "[5] Invert Image Filter\n";
+    cout << "[6] Darken and Lighten Filter\n";
+    cout << "[7] Black and White Filter\n";
+    cout << "[8] Resizing images Filter\n";
     
     cout << "[0] Exit\n";
 }
@@ -294,13 +347,21 @@ int main(){
                 break;
             }
             case 5:{
-                applyinvertImage(file_name )
+                applyinvertImage(file_name);
                 break;
             }
             case 6:{
-                applydark_light( file_name)
+                applydark_light(file_name);
                 break;
             }
+            case 7:{
+                applyBlack_and_White(file_name);
+                break;
+            }
+          case 8:{
+                applyresizing_images(file_name);
+                break;
+          }
             default:
                 cout << "Invalid choice\n";
                 break;
