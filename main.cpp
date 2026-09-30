@@ -1,1 +1,149 @@
-// main file 
+/*
+
+                        HEADER
+
+*/
+
+#include "Image_Class.h"
+using namespace std;
+
+
+void grayscaleFilter(Image& img) {
+    // loop iterates -->  image pixel
+    // col_idx < img.width not col_idx <= img.width 
+    // max col_idx = 4 if img.width = 5 as the loop starts from 0
+
+    for (int column = 0 ; column < img.width ; column++ ){
+        for (int row = 0 ; row < img.height ; row++ ){
+    
+            // get the pixel values
+            int channels_sum = 0;
+            for (int channel =0 ; channel<3 ; channel++){
+                channels_sum += img(column , row , channel );
+            }
+
+            // filter calculation --> avr --> Gray
+            int turn_to_gray = channels_sum / 3;
+    
+            // Update pixel values
+            for (int channel =0 ; channel < 3 ; channel++){
+                img(column , row , channel ) = turn_to_gray ;
+            }
+        }
+    }
+}
+
+void applyGrayscaleFilter(string file_name) {
+    Image img(file_name);
+    grayscaleFilter(img);
+    cout << "\nGrayscale Filter applied successfully\n";
+    string saving_name = "Grayscaled_" + file_name;
+    img.saveImage(saving_name);
+    cout << "Saved as " + saving_name + "\n";
+}
+
+
+Image flipFilter(Image& img , string state) {
+    // why not the same img ? --> conflict 
+    // you may lose pixels you still need
+    Image flipped_img(img.width , img.height);
+
+        for (int column = 0 ; column < img.width ; column++ ){
+            for (int row = 0 ; row < img.height ; row++ ){
+                if (state == "h"){
+                    // prepare the position
+                    int flip_col = img.width - 1 - column ;
+
+                    // pass the pixel to the new pos
+                    for (int channel =0 ; channel < 3 ; channel++){
+                        flipped_img(flip_col , row , channel) = img(column , row , channel);
+                    }
+                    
+                } else if (state == "v"){
+                    // prepare the position
+                    int flip_row = img.height - 1 - row ;
+
+                    // pass the pixel to the new pos
+                    for (int channel =0 ; channel < 3 ; channel++){
+                        flipped_img(column , flip_row , channel) = img(column , row , channel);
+                }
+            }
+        }
+    }
+    return flipped_img;
+}
+
+void applyFlipFilter(string file_name){
+    int direction;
+    Image img(file_name);
+    cout << "Select Flipping Direction\n";
+    cout << "[1] Vertical\n";
+    cout << "[2] Horizontal\nEnter Your Choice : ";
+    cin >> direction;
+
+    switch (direction) {
+        case 1:{
+            Image flipped_img = flipFilter(img , "v");
+            cout << "\nFlip Filter applied Vertically\n";
+            string saving_name = "Flipped_V_" + file_name;
+            flipped_img.saveImage(saving_name);
+            cout << "Saved as " + saving_name + "\n";
+            break;
+        }
+        case 2:{
+            Image flipped_img = flipFilter(img , "h");
+            cout << "\nFlip Filter applied Horizontally\n";
+            string saving_name = "Flipped_H_" + file_name;
+            flipped_img.saveImage(saving_name);
+            cout << "Saved as " + saving_name + "\n";
+            break;
+        }
+        default:
+            cout << "Invalid choice\n";
+            break;
+    }
+}
+
+
+
+void displayMenu() {
+    cout << "\nWELCOME TO BABY PHOTOSHOP\n";
+    cout << "Select Your Filter:\n";
+    cout << "[1] Grayscale Filter\n";
+    cout << "[2] Flip Filter\n";
+    cout << "[0] Exit\n";
+}
+
+int main(){
+    string file_name;
+    int choice;
+    
+    while (true) {
+        displayMenu();
+        cout << "Enter Your Choice : ";
+        cin >> choice;
+
+        if (choice == 0){
+            cout << "Thank You For Using <BABY PHOTOSHOP>!\n";
+            break;
+        }
+
+        cout << "Enter image filename: ";
+        cin >> file_name;
+        
+        switch (choice) {
+            case 1:{
+                applyGrayscaleFilter(file_name);
+                break;
+            }
+            case 2:{
+                applyFlipFilter(file_name);
+                break;
+            }
+            default:
+                cout << "Invalid choice\n";
+                break;
+        }
+    }
+    return 0;
+}
