@@ -141,8 +141,6 @@ void rotation(Image& img , int degree) {
 }
 
 void applyrotation(string file_name ) {
-    cout << "Enter your image file_name: " << endl;
-    cin >> file_name;
     int degree;
     cout << "Enter a degree 90,180,270 : " << endl;
     cin >> degree;
@@ -169,8 +167,6 @@ void den(Image& img) {
 
 void applyden(string file_name) {
     string newname;
-    cout << "Enter your image file_name : " << endl;
-    cin >> file_name;
     cout << "Enter image new name : " << endl;
     cin >> newname;
     img.loadNewImage(file_name);
@@ -217,7 +213,12 @@ int main(){
                 break;
             }
             case 3:{
-                apply
+                applyrotation(file_name);
+                break;
+            }
+            case 4:{
+                applyden(file_name);
+                break;
             default:
                 cout << "Invalid choice\n";
                 break;
