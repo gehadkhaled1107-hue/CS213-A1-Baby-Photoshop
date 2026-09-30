@@ -295,10 +295,12 @@ int main(){
             }
             case 5:{
                 applyinvertImage(file_name )
-                  break;
+                break;
             }
-
-      
+            case 6:{
+                applydark_light( file_name)
+                break;
+            }
             default:
                 cout << "Invalid choice\n";
                 break;
