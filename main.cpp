@@ -104,6 +104,80 @@ void applyFlipFilter(string file_name){
     }
 }
 
+void rotation(Image& img , int degree) {
+    if (degree==90) {
+        Image newimg(img.height,img.width);
+        for (int i=0 ; i<img.height ; ++i) {
+            for (int j=0 ; j<img.width ; ++j) {
+                for (int c=0 ; c<3 ; ++c) {
+                    newimg.setPixel(img.height-1-i,j,c,img.getPixel(j,i,c));
+                }
+            }
+        }
+        img=newimg;
+    }
+    else if (degree==180) {
+        Image newimg(img.width,img.height);
+        for (int i=0 ; i<img.height ; ++i) {
+            for (int j=0 ; j<img.width ; ++j) {
+                for (int c=0 ; c<3 ; ++c) {
+                    newimg.setPixel(img.width-1-j,img.height-1-i,c,img.getPixel(j,i,c));
+                }
+            }
+        }
+        img=newimg;
+    }
+    else if (degree==270) {
+        Image newimg(img.height , img.width);
+        for (int i=0 ; i<img.height ; ++i) {
+            for (int j=0 ; j<img.width ; ++j) {
+                for (int c=0 ; c<3 ; ++c) {
+                    newimg.setPixel(i,img.width-1-j,c,img.getPixel(j,i,c));
+                }
+            }
+        }
+        img=newimg;
+    }
+}
+
+void applyrotation(string file_name ) {
+    cout << "Enter your image file_name: " << endl;
+    cin >> file_name;
+    int degree;
+    cout << "Enter a degree 90,180,270 : " << endl;
+    cin >> degree;
+    img.loadNewImage( file_name);
+    rotation(img,degree);
+    string newname;
+    cout << "Enter image new name : " << endl;
+    cin >> newname;
+    img.saveImage(newname);
+    cout << "The image was saved!" << endl;
+}
+
+void den(Image& img) {
+    for (int i=0 ; i<img.height ; ++i) {
+        for (int j=0 ; j<img.width ; ++j) {
+            if (i%4!=0) {
+                for (int c=0 ; c<3 ; ++c) {
+                    img.setPixel(j,i,c,img.getPixel(j,i,c)*0.5);
+                }
+            }
+        }
+    }
+}
+
+void applyden(string file_name) {
+    string newname;
+    cout << "Enter your image file_name : " << endl;
+    cin >> file_name;
+    cout << "Enter image new name : " << endl;
+    cin >> newname;
+    img.loadNewImage(file_name);
+    den(img);
+    img.saveImage(newname);
+    cout << "The image was saved!" << endl;
+}
 
 
 void displayMenu() {
@@ -111,6 +185,8 @@ void displayMenu() {
     cout << "Select Your Filter:\n";
     cout << "[1] Grayscale Filter\n";
     cout << "[2] Flip Filter\n";
+    cout << "[3] Rotation Filter\n";
+    cout << "[4] Television Filter\n";
     cout << "[0] Exit\n";
 }
 
@@ -140,6 +216,8 @@ int main(){
                 applyFlipFilter(file_name);
                 break;
             }
+            case 3:{
+                apply
             default:
                 cout << "Invalid choice\n";
                 break;
