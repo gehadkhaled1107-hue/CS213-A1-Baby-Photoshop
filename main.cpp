@@ -106,6 +106,7 @@ void den(Image& img) {
 
 
 
+
 void darkenImage(Image& img) {
     for (int i = 0; i < img.width; i++) {
         for(int j = 0; j < img.height; j++) {
@@ -143,13 +144,6 @@ void invertImage(Image& img) {
 
 int main()
 {
-    string filename;
-    cout << "Enter image filename: ";
-    cin >> filename;
-    Image img(filename);
-    invertImage(img);
 
-    img.saveImage("mario_yoshi_inverted.png");
-    cout << "Inverted image saved!\n";
 }
 
