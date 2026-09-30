@@ -36,10 +36,11 @@ void grayscaleFilter(Image& img) {
 void applyGrayscaleFilter(string file_name) {
     Image img(file_name);
     grayscaleFilter(img);
-    cout << "\nGrayscale Filter applied successfully\n";
-    string saving_name = "Grayscaled_" + file_name;
-    img.saveImage(saving_name);
-    cout << "Saved as " + saving_name + "\n";
+    string newname;
+    cout << "Enter image new name : " << endl;
+    cin >> newname;
+    img.saveImage(newname);
+    cout << "The image was saved!" << endl;
 }
 
 
@@ -84,18 +85,20 @@ void applyFlipFilter(string file_name){
     switch (direction) {
         case 1:{
             Image flipped_img = flipFilter(img , "v");
-            cout << "\nFlip Filter applied Vertically\n";
-            string saving_name = "Flipped_V_" + file_name;
-            flipped_img.saveImage(saving_name);
-            cout << "Saved as " + saving_name + "\n";
+            string newname;
+            cout << "Enter image new name : " << endl;
+            cin >> newname;
+            img.saveImage(newname);
+            cout << "The image was saved!" << endl;
             break;
         }
         case 2:{
             Image flipped_img = flipFilter(img , "h");
-            cout << "\nFlip Filter applied Horizontally\n";
-            string saving_name = "Flipped_H_" + file_name;
-            flipped_img.saveImage(saving_name);
-            cout << "Saved as " + saving_name + "\n";
+            string newname;
+            cout << "Enter image new name : " << endl;
+            cin >> newname;
+            img.saveImage(newname);
+            cout << "The image was saved!" << endl;
             break;
         }
         default:
@@ -189,8 +192,11 @@ void applyinvertImage( string file_name ){
     Image img(filename);
     invertImage(img);
 
-    img.saveImage("mario_yoshi_inverted.png");
-    cout << "Inverted image saved!\n";
+    string newname;
+    cout << "Enter image new name : " << endl;
+    cin >> newname;
+    img.saveImage(newname);
+    cout << "The image was saved!" << endl;
 
     return 0;
 }
@@ -230,13 +236,19 @@ void applydark_light(string file_name){
 
     if (choice == 1) {
         darkenImage(img);
-        img.saveImage("building_darkened.png");
-        cout << "Darkened image saved!\n";
+        string newname;
+        cout << "Enter image new name : " << endl;
+        cin >> newname;
+        img.saveImage(newname);
+        cout << "The image was saved!" << endl;
     }
     else if (choice == 2) {
         lightenImage(img);
-        img.saveImage("building_lightened.png");
-        cout << "Lightened image saved!\n";
+        string newname;
+        cout << "Enter image new name : " << endl;
+        cin >> newname;
+        img.saveImage(newname);
+        cout << "The image was saved!" << endl;
     }
     else {
         cout << "Invalid choice!\n";
