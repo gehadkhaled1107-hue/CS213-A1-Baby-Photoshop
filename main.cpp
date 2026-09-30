@@ -270,7 +270,7 @@ void applyBlack_and_White(string file_name) {
     cout << "The image was saved!" << endl;
 }
 
-void resizing_images(Image& img,Image& resized_img,newW,newH) {
+void Resizing_Images(Image& img,Image& resized_img,newW,newH) {
     float scaleW = (float)img.width / newW;
     float scaleH = (float)img.height / newH;
     for (int X = 0;X < newW;++X) {
@@ -286,12 +286,12 @@ void resizing_images(Image& img,Image& resized_img,newW,newH) {
     }
 }
 
-void applyresizing_images(string file_name) {
+void applyResizing_Images(string file_name) {
     Image img(file_name);
     int newW,newH;
     cin >> newW >> newH;
-    Image resized_image(newW,newH);
-    resizing_images(img,resized_image,newW,newH);
+    Image resized_img(newW,newH);
+    Resizing_Images(img,resized_img,newW,newH);
     cout << "Enter image new name : " << endl;
     cin >> newname;
     resized_img.saveImage(newname);
@@ -307,7 +307,7 @@ void displayMenu() {
     cout << "[5] Invert Image Filter\n";
     cout << "[6] Darken and Lighten Filter\n";
     cout << "[7] Black and White Filter\n";
-    cout << "[8] Resizing images Filter\n";
+    cout << "[8] Resizing Images Filter\n";
     
     cout << "[0] Exit\n";
 }
@@ -358,10 +358,10 @@ int main(){
                 applyBlack_and_White(file_name);
                 break;
             }
-          case 8:{
-                applyresizing_images(file_name);
+            case 8:{
+                applyResizing_Images(file_name);
                 break;
-          }
+            }
             default:
                 cout << "Invalid choice\n";
                 break;
