@@ -1,8 +1,4 @@
-/*
 
-                        HEADER
-
-*/
 
 #include "Image_Class.h"
 using namespace std;
@@ -197,8 +193,6 @@ void applyinvertImage( string file_name ){
     cin >> newname;
     img.saveImage(newname);
     cout << "The image was saved!" << endl;
-
-    return 0;
 }
 
 void darkenImage(Image& img) {
@@ -329,6 +323,8 @@ int main(){
     int choice;
     
     while (true) {
+        cout << "Enter image filename: ";
+        cin >> file_name;
         displayMenu();
         cout << "Enter Your Choice : ";
         cin >> choice;
@@ -337,46 +333,48 @@ int main(){
             cout << "Thank You For Using <BABY PHOTOSHOP>!\n";
             break;
         }
-
-        cout << "Enter image filename: ";
-        cin >> file_name;
         
-        switch (choice) {
-            case 1:{
-                applyGrayscaleFilter(file_name);
-                break;
-            }
-            case 2:{
-                applyFlipFilter(file_name);
-                break;
-            }
-            case 3:{
-                applyrotation(file_name);
-                break;
-            }
-            case 4:{
-                applyden(file_name);
-                break;
-            }
-            case 5:{
-                applyinvertImage(file_name);
-                break;
-            }
-            case 6:{
-                applydark_light(file_name);
-                break;
-            }
-            case 7:{
-                applyBlack_and_White(file_name);
-                break;
-            }
-            case 8:{
-                applyResizing_Images(file_name);
-                break;
-            }
-            default:
-                cout << "Invalid choice\n";
-                break;
+        try {
+            switch (choice) {
+                case 1:{
+                    applyGrayscaleFilter(file_name);
+                    break;
+                }
+                case 2:{
+                    applyFlipFilter(file_name);
+                    break;
+                }
+                case 3:{
+                    applyrotation(file_name);
+                    break;
+                }
+                case 4:{
+                    applyden(file_name);
+                    break;
+                }
+                case 5:{
+                    applyinvertImage(file_name);
+                    break;
+                }
+                case 6:{
+                    applydark_light(file_name);
+                    break;
+                }
+                case 7:{
+                    applyBlack_and_White(file_name);
+                    break;
+                }
+                case 8:{
+                    applyResizing_Images(file_name);
+                    break;
+                }
+                default:
+                    cout << "Invalid choice\n";
+                    break;
+             }
+        }
+        catch (...) {
+            cout << "\nError: could not open \"" << file_name << "\"\n";
         }
     }
     return 0;
