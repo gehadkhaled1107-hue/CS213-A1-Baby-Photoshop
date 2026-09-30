@@ -175,6 +175,76 @@ void applyden(string file_name) {
     cout << "The image was saved!" << endl;
 }
 
+void invertImage(Image& img) {
+    for (int i = 0; i < img.width; i++) {
+        for (int j = 0; j < img.height; j++) {
+            img.setPixel(i, j, 0, (255 - img.getPixel(i, j, 0)));
+            img.setPixel(i, j, 1, (255 - img.getPixel(i, j, 1)));
+            img.setPixel(i, j, 2, (255 - img.getPixel(i, j, 2)));
+        }
+    }
+}
+
+void applyinvertImage( string file_name ){
+    Image img(filename);
+    invertImage(img);
+
+    img.saveImage("mario_yoshi_inverted.png");
+    cout << "Inverted image saved!\n";
+
+    return 0;
+}
+
+void darkenImage(Image& img) {
+    for (int i = 0; i < img.width; i++) {
+        for(int j = 0; j < img.height; j++) {
+            for (int k = 0; k < img.channels; k++) {
+                int currentValue = img.getPixel(i, j, k);
+                int newValue = currentValue * 0.5;
+                newValue = max(0, newValue);
+                img.setPixel(i, j, k, newValue);
+            }
+        }
+    }
+}
+void lightenImage(Image& img) {
+    for (int i = 0; i < img.width; i++) {
+        for (int j = 0; j < img.height; j++) {
+            for (int k = 0; k < img.channels; k++) {
+                int currentValue = img.getPixel(i, j, k);
+                int newValue = currentValue * 1.5;
+                newValue = min(255, newValue);
+                img.setPixel(i, j, k, newValue);
+            }
+        }
+    }
+}
+
+void applydark_light(string file_name){
+    Image img(filename);
+
+    cout << "Choose option:\n1. Darken (50%)\n2. Lighten (50%)\n";
+
+    int choice;
+    cin >> choice;
+
+    if (choice == 1) {
+        darkenImage(img);
+        img.saveImage("building_darkened.png");
+        cout << "Darkened image saved!\n";
+    }
+    else if (choice == 2) {
+        lightenImage(img);
+        img.saveImage("building_lightened.png");
+        cout << "Lightened image saved!\n";
+    }
+    else {
+        cout << "Invalid choice!\n";
+    }
+}
+
+
+
 
 void displayMenu() {
     cout << "\nWELCOME TO BABY PHOTOSHOP\n";
@@ -183,6 +253,9 @@ void displayMenu() {
     cout << "[2] Flip Filter\n";
     cout << "[3] Rotation Filter\n";
     cout << "[4] Television Filter\n";
+    cout << '[5] Invert Image Filter \n";
+    cout << '[6] Darken and Lighten Filter \n";
+    
     cout << "[0] Exit\n";
 }
 
@@ -219,6 +292,13 @@ int main(){
             case 4:{
                 applyden(file_name);
                 break;
+            }
+            case 5:{
+                applyinvertImage(file_name )
+                  break;
+            }
+
+      
             default:
                 cout << "Invalid choice\n";
                 break;
