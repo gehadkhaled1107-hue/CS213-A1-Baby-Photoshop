@@ -42,21 +42,21 @@ Image flipFilter(Image& img, string state) {
 }
 
 void rotation(Image& img, int degree) {
-    if (degree == 90) {
+    if (degree == 1) {
         Image newimg(img.height, img.width);
         for (int i = 0; i < img.height; ++i)
             for (int j = 0; j < img.width; ++j)
                 for (int c = 0; c < 3; ++c)
                     newimg.setPixel(img.height - 1 - i, j, c, img.getPixel(j, i, c));
         img = newimg;
-    } else if (degree == 180) {
+    } else if (degree == 2) {
         Image newimg(img.width, img.height);
         for (int i = 0; i < img.height; ++i)
             for (int j = 0; j < img.width; ++j)
                 for (int c = 0; c < 3; ++c)
                     newimg.setPixel(img.width - 1 - j, img.height - 1 - i, c, img.getPixel(j, i, c));
         img = newimg;
-    } else if (degree == 270) {
+    } else if (degree == 3) {
         Image newimg(img.height, img.width);
         for (int i = 0; i < img.height; ++i)
             for (int j = 0; j < img.width; ++j)
@@ -192,7 +192,9 @@ void applyInvertImage(Image& currentImage) {
 }
 
 void applyDarkLight(Image& currentImage) {
-    cout << "Choose option:\n1. Darken (50%)\n2. Lighten (50%)\nChoice: ";
+    cout << "Choose option: ";
+    cout << "[1] Darken (50%)\n";
+    cout << "[2] Lighten (50%)\n";
     int choice;
     cin >> choice;
     if (choice == 1) {
@@ -223,7 +225,7 @@ void applyResizingImages(Image& currentImage) {
 
 
 void saveCurrentImage(Image& current_image, string& current_file) {
-    cout << "(1) Save with the same name\n(2) Save with a new name\n";
+    cout << "[1] Save with the same name\n[2] Save with a new name\n";
     int saveChoice;
     cin >> saveChoice;
 
