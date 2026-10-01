@@ -1,6 +1,9 @@
 /*
-    HeaDeR
- */
+    Gehad Khaled - 20250163 - Filters 1&5 - S11
+    Shahd Abdelmaboud - 20250326 - Filters 6&14 - S11
+    Sara Yasser - 20250840 - Filters 3&7 - S11
+    Sara Mostafa - 20251186- Filters 2&8 - S11
+*/
 
 #include "Image_Class.h"
 #include <algorithm>
