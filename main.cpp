@@ -1,8 +1,23 @@
-/*
-    Gehad Khaled - 20250163 - Filters 1&5 - S11
-    Shahd Abdelmaboud - 20250326 - Filters 6&14 - S11
-    Sara Yasser - 20250840 - Filters 3&7 - S11
-    Sara Mostafa - 20251186- Filters 2&8 - S11
+ /*
+    Gehad Khaled - 20250163 - S11
+        - Filters 
+        [1]Grayscale Conversion
+        [5]Flip Image
+
+    Shahd Abdelmaboud - 20250326 - S11
+        - Filters 
+        [6]Rotate Image
+        [14]TV images
+
+    Sara Yasser - 20250840 - S11
+        - Filters 
+        [3]Invert Image
+        [7]Darken and Lighten Image
+
+    Sara Mostafa - 20251186- S11
+        - Filters 
+        [2]Black and White
+        [8]Resizing Images
 */
 
 #include "Image_Class.h"
@@ -148,7 +163,7 @@ void Resizing_Images(Image& img, Image& resized_img, int newW, int newH) {
 
 void applyGrayscaleFilter(Image& current_image) {
     grayscaleFilter(current_image);
-    cout << "\nGrayscale filter applied.\n";
+    cout << "\nGrayscale filter applied\n";
 }
 
 void applyFlipFilter(Image& currentImage) {
@@ -160,10 +175,10 @@ void applyFlipFilter(Image& currentImage) {
 
     if (direction == 1) {
         currentImage = flipFilter(currentImage, "v");
-        cout << "\nFlip filter applied vertically.\n";
+        cout << "\nFlip filter applied vertically\n";
     } else if (direction == 2) {
         currentImage = flipFilter(currentImage, "h");
-        cout << "\nFlip filter applied horizontally.\n";
+        cout << "\nFlip filter applied horizontally\n";
     } else {
         cout << "Invalid choice\n";
     }
@@ -171,41 +186,41 @@ void applyFlipFilter(Image& currentImage) {
 
 void applyRotation(Image& currentImage) {
     int degree;
-    cout << "Enter a degree : ";
     cout << "[1] 90" << endl;
     cout << "[2] 180" << endl;
     cout << "[3] 270" << endl;
+    cout << "Enter a degree : ";
     cin >> degree;
     if (degree != 1 && degree != 2 && degree != 3) {
-        cout << "Invalid degree.\n";
+        cout << "Invalid degree\n";
         return;
     }
     rotation(currentImage, degree);
-    cout << "\nRotation filter applied.\n";
+    cout << "\nRotation filter applied\n";
 }
 
 void applyDen(Image& currentImage) {
     den(currentImage);
-    cout << "\nTelevision filter applied.\n";
+    cout << "\nTelevision filter applied\n";
 }
 
 void applyInvertImage(Image& currentImage) {
     invertImage(currentImage);
-    cout << "\nInvert filter applied.\n";
+    cout << "\nInvert filter applied\n";
 }
 
 void applyDarkLight(Image& currentImage) {
-    cout << "Choose option: ";
     cout << "[1] Darken (50%)\n";
     cout << "[2] Lighten (50%)\n";
+    cout << "Choose option: ";
     int choice;
     cin >> choice;
     if (choice == 1) {
         darkenImage(currentImage);
-        cout << "\nImage darkened.\n";
+        cout << "\nImage darkened\n";
     } else if (choice == 2) {
         lightenImage(currentImage);
-        cout << "\nImage lightened.\n";
+        cout << "\nImage lightened\n";
     } else {
         cout << "Invalid choice!\n";
     }
@@ -213,7 +228,7 @@ void applyDarkLight(Image& currentImage) {
 
 void applyBlackAndWhite(Image& currentImage) {
     Black_and_White(currentImage);
-    cout << "\nBlack & White filter applied.\n";
+    cout << "\nBlack & White filter applied\n";
 }
 
 void applyResizingImages(Image& currentImage) {
@@ -223,12 +238,15 @@ void applyResizingImages(Image& currentImage) {
     Image resized(newW, newH);
     Resizing_Images(currentImage, resized, newW, newH);
     currentImage = resized;
-    cout << "\nImage resized.\n";
+    cout << "\nImage resized\n";
 }
 
 
 void saveCurrentImage(Image& current_image, string& current_file) {
-    cout << "[1] Save with the same name\n[2] Save with a new name\n";
+    cout << "[1] Save with the same name\n";
+    cout << "[2] Save with a new name\n";
+    cout << "Enter Your Choice : ";
+
     int saveChoice;
     cin >> saveChoice;
 
@@ -241,14 +259,14 @@ void saveCurrentImage(Image& current_image, string& current_file) {
     try {
         current_image.saveImage(target_image);
         current_file = target_image;
-        cout << "Saved as \"" << target_image << "\".\n";
-    } catch (const std::exception& e) {
-        cout << "Save failed: " << e.what() << "\n";
+        cout << "Saved as <" << target_image << ">\n";
+    } catch (...) {
+        cout << "\nCould not save the image\n";
     }
 }
 
-bool ask(string validation) {
-    cout << validation << " (y/n): ";
+bool ask(const string& confirmation) {
+    cout << confirmation << " (y/n): ";
     char answer;
     cin >> answer;
     return (answer == 'y' || answer == 'Y');
@@ -274,16 +292,23 @@ void displayMenu() {
 
 int main() {
     string current_file;
-    cout << "Enter image filename to load: ";
-    cin >> current_file;
-
     Image current_image;
-    try {
-        current_image.loadNewImage(current_file);
-    } catch (const std::exception& e) {
-        cout << "Could not load image: " << e.what() << "\n";
-        return 1;
+
+    while (true) {
+        cout << "Enter image filename\n[or < 0 > to Exit]: ";
+        cin >> current_file;
+
+        if (current_file == "0") {
+            return 1;
+        }
+
+        try {
+            current_image.loadNewImage(current_file);
+            break;
+        } catch (...) {
+        }
     }
+
 
     while (true) {
         displayMenu();
@@ -291,7 +316,7 @@ int main() {
         cin >> choice;
 
         if (choice == 0) {
-            if (ask("Save before exiting --> (y/n)?")) {
+            if (ask("Save before exiting")) {
                 saveCurrentImage(current_image, current_file);
             }
             cout << "Thank You For Using <BABY PHOTOSHOP>!\n";
@@ -333,7 +358,7 @@ int main() {
                     cin >> new_file;
                     current_image.loadNewImage(new_file);
                     current_file = new_file;
-                    cout << "Loaded \"" << new_file  << "\"\n";
+                    cout << "Loaded <" << new_file  << ">\n";
                     break;
                 }
                 case 10:
@@ -343,8 +368,8 @@ int main() {
                     cout << "Invalid choice\n";
                     break;
             }
-        } catch (const std::exception& e) {
-            cout << "\nError: " << e.what() << "\n";
+        } catch (...) {
+            cout << "\nPlease try again\n ";
         }
     }
     return 0;
