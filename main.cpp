@@ -54,8 +54,103 @@ void makeframe(Image& img , int n) {
        }
     }
     else {
-
-    }
+        for (int i=20 ; i<=img.height-21 ; ++i) {
+            for (int j=20 ; j<35 ; ++j) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (c==0) img.setPixel(j,i,c,200);
+                    if (c==1) img.setPixel(j,i,c,210);
+                    if (c==2) img.setPixel(j,i,c,225);
+                }
+            }
+            for (int j=img.width-35 ; j<=img.width-21 ; ++j) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (c==0) img.setPixel(j,i,c,175);
+                    if (c==1) img.setPixel(j,i,c,187);
+                    if (c==2) img.setPixel(j,i,c,206);
+                }
+            }
+        }
+        for (int j=20 ; j<img.width-21 ; ++j) {
+            for (int i=20 ; i<35 ; ++i) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (c==0) img.setPixel(j,i,c,148);
+                    if (c==1) img.setPixel(j,i,c,162);
+                    if (c==2) img.setPixel(j,i,c,184);
+                }
+            }
+            for (int i=img.height-35 ; i<=img.height-21 ; ++i) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (c==0) img.setPixel(j,i,c,120);
+                    if (c==1) img.setPixel(j,i,c,135);
+                    if (c==2) img.setPixel(j,i,c,158);
+                }
+            }
+        }
+        for (int i=10 ; i<img.height-11 ; ++i) {
+            for (int j=10 ; j<21 ; ++j) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (c==0) img.setPixel(j,i,c,85);
+                    if (c==1) img.setPixel(j,i,c,98);
+                    if (c==2) img.setPixel(j,i,c,120);
+                }
+            }
+            for (int j=img.width-21 ; j<=img.width-11 ; ++j) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (c==0) img.setPixel(j,i,c,85);
+                    if (c==1) img.setPixel(j,i,c,98);
+                    if (c==2) img.setPixel(j,i,c,120);
+                }
+            }
+        }
+        for (int j=10 ; j<=img.width-11 ; ++j) {
+            for (int i=10 ; i<21 ; ++i) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (c==0) img.setPixel(j,i,c,85);
+                    if (c==1) img.setPixel(j,i,c,98);
+                    if (c==2) img.setPixel(j,i,c,120);
+                }
+            }
+            for (int i=img.height-21 ; i<=img.height-11 ; ++i) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (c==0) img.setPixel(j,i,c,85);
+                    if (c==1) img.setPixel(j,i,c,98);
+                    if (c==2) img.setPixel(j,i,c,120);
+                }
+            }
+        }
+        for (int i=0 ; i<img.height ; ++i) {
+            for (int j=0 ; j<10 ; ++j){
+                for (int c=0 ; c<3 ; ++c) {
+                    if (c==0) img.setPixel(j,i,c,45);
+                    if (c==1) img.setPixel(j,i,c,55);
+                    if (c==2) img.setPixel(j,i,c,72);
+                }
+            }
+            for (int j=img.width-10 ; j<img.width ; ++j) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (c==0) img.setPixel(j,i,c,45);
+                    if (c==1) img.setPixel(j,i,c,55);
+                    if (c==2) img.setPixel(j,i,c,72);
+                }
+            }
+        }
+        for (int j=0 ; j<img.width ; ++j) {
+            for (int i=0 ; i<10 ; ++i) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (c==0) img.setPixel(j,i,c,45);
+                    if (c==1) img.setPixel(j,i,c,55);
+                    if (c==2) img.setPixel(j,i,c,72);
+                }
+            }
+            for (int i=img.height-10 ; i<img.height ; ++i) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (c==0) img.setPixel(j,i,c,45);
+                    if (c==1) img.setPixel(j,i,c,55);
+                    if (c==2) img.setPixel(j,i,c,72);
+                }
+            }
+        }
+     }
 }
 
 void edges(Image& img) {
