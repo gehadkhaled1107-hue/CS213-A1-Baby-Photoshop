@@ -7,7 +7,7 @@ void filter8 (Image& image,Image& resized_image,int newW,int newH) {
         for (int Y = 0;Y < newH;++Y) {
             int orgX = (int)(X * scaleW);
             int orgY = (int)(Y * scaleH);
-            if (orgX >= image.width) orgX = image.width -1;
+            if (orgX >= image.width) orgX = image.width - 1;
             if (orgY >= image.height) orgY = image.height - 1;
             for (int k = 0;k < 3;++k) {
                 resized_image(X,Y,k) = image(orgX,orgY,k);
