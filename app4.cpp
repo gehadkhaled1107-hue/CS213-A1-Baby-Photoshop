@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Image_Class.h"
 using namespace std;
 void filter12 (Image& image,Image& blurred_image) {
