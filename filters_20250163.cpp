@@ -1,5 +1,7 @@
 #include "Image_Class.h"
+#include <algorithm>
 using namespace std;
+
 
 //            Filters Function             //
 
@@ -63,17 +65,17 @@ Image flipFilter(Image& img , string state) {
 
 
 // filter resize from sara's filters
-void filter8 (Image& image,Image& resized_image,int newW,int newH) {
-    float scaleW = (float)image.width / newW;
-    float scaleH = (float)image.height / newH;
-    for (int X = 0;X < newW;++X) {
-        for (int Y = 0;Y < newH;++Y) {
+void Resizing_Images(Image& img, Image& resized_img, int newW, int newH) {
+    float scaleW = (float)img.width / newW;
+    float scaleH = (float)img.height / newH;
+    for (int X = 0; X < newW; ++X) {
+        for (int Y = 0; Y < newH; ++Y) {
             int orgX = (int)(X * scaleW);
             int orgY = (int)(Y * scaleH);
-            if (orgX >= image.width) orgX = image.width -1;
-            if (orgY >= image.height) orgY = image.height - 1;
-            for (int k = 0;k < 3;++k) {
-                resized_image(X,Y,k) = image(orgX,orgY,k);
+            if (orgX >= img.width) orgX = img.width - 1;
+            if (orgY >= img.height) orgY = img.height - 1;
+            for (int k = 0; k < 3; ++k) {
+                resized_img(X, Y, k) = img(orgX, orgY, k);
             }
         }
     }
@@ -81,12 +83,48 @@ void filter8 (Image& image,Image& resized_image,int newW,int newH) {
 
 
 // Filter 9: Merge Images
-// Image mergeFilter(const Image& img1, const Image& img2) {
-// }
+// Helping function merge the images only
+// return the merged image
+Image mergingPixels(Image& img1, Image& img2, float blend_factor){
+    Image merged_image(img1.width , img1.height);
+    for (int column = 0 ; column < img1.width ; column++ ){
+        for (int row = 0 ; row < img1.height ; row++ ){
+            for (int channel =0 ; channel<3 ; channel++){
+                // manage trancpercity for the pixel 
+                // depends on blend factor 0(img2) --> 1(img1)
+                merged_image(column , row, channel) = (img1(column , row , channel )*blend_factor) + (img2(column , row , channel )*(1 - blend_factor));
+            }
+        }
+    } 
+    return merged_image;
+}
+
+// the actualyy function 
+// process the images to validate the size
+// then call mergingPixels to merge them
+Image mergeFilter(Image& img1, Image& img2, float blend_factor = 0.5){
+    if ((img1.height == img2.height) && (img1.width == img2.width)){
+        Image merged_image = mergingPixels(img1, img2, blend_factor);
+        return merged_image;
+    } else {
+        int resize_width = min(img1.width, img2.width);
+        int resize_height = min(img1.height, img2.height);
+
+        Image resized_img1(resize_width , resize_height);
+        Image resized_img2(resize_width , resize_height);
+
+        Resizing_Images(img1, resized_img1 ,resize_width ,resize_height);
+        Resizing_Images(img2, resized_img2 ,resize_width ,resize_height);
+        Image merged_image = mergingPixels(resized_img1, resized_img2, blend_factor);
+        return merged_image;
+    }
+}
 
 
 
 // Filter 13: Wano Sunlight Fix
+// sunlightFilter --> high yello percentage 
+// yello --> red + green
 void sunlightFilter(Image& img) {
     for (int column = 0 ; column < img.width ; column++ ){
         for (int row = 0 ; row < img.height ; row++ ){
@@ -95,6 +133,7 @@ void sunlightFilter(Image& img) {
             int green = img(column , row , 1 );
             int blue = img(column , row , 2 );
 
+            // make sure we still 0 --> 255
             if (red + 30 <= 255){
                 img(column , row , 0 ) += 30;
             } else {
@@ -114,34 +153,6 @@ void sunlightFilter(Image& img) {
             }
         }
     }
-}
-
-
-
-
-// void displayMenu() {
-// }
-
-
-
-// main menu --> testing only
-int main() {
-    string filename;
-    // cout << "Enter image filename: ";
-    // cin >> filename;
-
-    Image img("luffy.png");
-    // cout << "Image loaded: " << img.width << "x" << img.height << "\n";
-
-    // Image flipped_result = flipFilter(img , "v");
-
-    cout << "sunlightFilter filter applied.\n";
-    sunlightFilter(img);
-
-    img.saveImage("test_sunlightFilter_output.png");
-    cout << "Saved as test_sunlightFilter_output.png\n";
-
-    return 0;
 }
 
 
