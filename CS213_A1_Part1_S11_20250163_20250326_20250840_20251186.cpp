@@ -6,9 +6,11 @@
         [9]Merge Images
         [13]Sunlight 
 
-    Shahd Abdelmaboud - 20250326 - S11
+    Shahd Mohamed- 20250326 - S11
         - Filters 
+        [4]Adding a Frame to the Picture
         [6]Rotate Image
+        [10]Detect Image Edges
         [14]TV images
 
     Sara Yasser - 20250840 - S11
@@ -217,6 +219,399 @@ void sunlightFilter(Image& img) {
             }
         }
     }
+}
+
+void makeframe(Image& img , int n , int color) {
+    if (n==1) {
+        for (int i=0 ; i<img.height ; ++i) {
+            for (int j=0 ; j<img.width ; ++j) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (i<15 || j<15 || i>=img.height-15 || j>=img.width-15 )  {
+                       if (color==1) {
+                          if(c==0) img.setPixel(j,i,c,190);
+                          if(c==1) img.setPixel(j,i,c,150);
+                          if(c==2) img.setPixel(j,i,c,110);
+                       }
+                       else if (color==2) {
+                          if(c==0) img.setPixel(j,i,c,230);
+                          if(c==1) img.setPixel(j,i,c,35);
+                          if(c==2) img.setPixel(j,i,c,40);
+                       }
+                       else if (color==3) {
+                          if(c==0) img.setPixel(j,i,c,25);
+                          if(c==1) img.setPixel(j,i,c,95);
+                          if(c==2) img.setPixel(j,i,c,210);
+                       }
+                       else if (color==4) {
+                          if(c==0) img.setPixel(j,i,c,30);
+                          if(c==1) img.setPixel(j,i,c,160);
+                          if(c==2) img.setPixel(j,i,c,95);
+                       }
+                       else if (color==5) {
+                          if(c==0) img.setPixel(j,i,c,0);
+                          if(c==1) img.setPixel(j,i,c,0);
+                          if(c==2) img.setPixel(j,i,c,0);
+                       }
+                    }
+                }
+
+            }
+       }
+    }
+    else {
+        for (int i=20 ; i<=img.height-21 ; ++i) {
+            for (int j=20 ; j<40 ; ++j) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (color==1) {
+                        if(c==0) img.setPixel(j,i,c,255);
+                        if(c==1) img.setPixel(j,i,c,245);
+                        if(c==2) img.setPixel(j,i,c,232);
+                    }
+                    else if (color==2) {
+                        if(c==0) img.setPixel(j,i,c,250);
+                        if(c==1) img.setPixel(j,i,c,135);
+                        if(c==2) img.setPixel(j,i,c,140);
+                    }
+                    else if (color==3) {
+                        if(c==0) img.setPixel(j,i,c,120);
+                        if(c==1) img.setPixel(j,i,c,185);
+                        if(c==2) img.setPixel(j,i,c,250);
+                    }
+                    else if (color==4) {
+                        if(c==0) img.setPixel(j,i,c,115);
+                        if(c==1) img.setPixel(j,i,c,220);
+                        if(c==2) img.setPixel(j,i,c,168);
+                    }
+                }
+            }
+            for (int j=img.width-40 ; j<=img.width-21 ; ++j) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (color==1) {
+                        if(c==0) img.setPixel(j,i,c,248);
+                        if(c==1) img.setPixel(j,i,c,233);
+                        if(c==2) img.setPixel(j,i,c,215);
+                    }
+                    else if (color==2) {
+                        if(c==0) img.setPixel(j,i,c,255);
+                        if(c==1) img.setPixel(j,i,c,170);
+                        if(c==2) img.setPixel(j,i,c,175);
+                    }
+                    else if (color==3) {
+                        if(c==0) img.setPixel(j,i,c,200);
+                        if(c==1) img.setPixel(j,i,c,230);
+                        if(c==2) img.setPixel(j,i,c,255);
+                    }
+                    else if (color==4) {
+                        if(c==0) img.setPixel(j,i,c,160);
+                        if(c==1) img.setPixel(j,i,c,238);
+                        if(c==2) img.setPixel(j,i,c,200);
+                    }
+                }
+            }
+        }
+        for (int j=20 ; j<img.width-21 ; ++j) {
+            for (int i=20 ; i<40 ; ++i) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (color==1) {
+                        if(c==0) img.setPixel(j,i,c,240);
+                        if(c==1) img.setPixel(j,i,c,220);
+                        if(c==2) img.setPixel(j,i,c,195);
+                    }
+                    else if (color==2) {
+                        if(c==0) img.setPixel(j,i,c,255);
+                        if(c==1) img.setPixel(j,i,c,200);
+                        if(c==2) img.setPixel(j,i,c,203);
+                    }
+                    else if (color==3) {
+                        if(c==0) img.setPixel(j,i,c,230);
+                        if(c==1) img.setPixel(j,i,c,244);
+                        if(c==2) img.setPixel(j,i,c,255);
+                    }
+                    else if (color==4) {
+                        if(c==0) img.setPixel(j,i,c,198);
+                        if(c==1) img.setPixel(j,i,c,248);
+                        if(c==2) img.setPixel(j,i,c,222);
+                    }
+                }
+            }
+            for (int i=img.height-40 ; i<=img.height-21 ; ++i) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (color==1) {
+                        if(c==0) img.setPixel(j,i,c,230);
+                        if(c==1) img.setPixel(j,i,c,205);
+                        if(c==2) img.setPixel(j,i,c,170);
+                    }
+                    else if (color==2) {
+                        if(c==0) img.setPixel(j,i,c,255);
+                        if(c==1) img.setPixel(j,i,c,225);
+                        if(c==2) img.setPixel(j,i,c,227);
+                    }
+                    else if (color==3) {
+                        if(c==0) img.setPixel(j,i,c,165);
+                        if(c==1) img.setPixel(j,i,c,212);
+                        if(c==2) img.setPixel(j,i,c,255);
+                    }
+                    else if (color==4) {
+                        if(c==0) img.setPixel(j,i,c,228);
+                        if(c==1) img.setPixel(j,i,c,253);
+                        if(c==2) img.setPixel(j,i,c,240);
+                    }
+                }
+            }
+        }
+        for (int i=10 ; i<img.height-11 ; ++i) {
+            for (int j=10 ; j<21 ; ++j) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (color==1) {
+                        if(c==0) img.setPixel(j,i,c,215);
+                        if(c==1) img.setPixel(j,i,c,180);
+                        if(c==2) img.setPixel(j,i,c,140);
+                    }
+                    else if (color==2) {
+                        if(c==0) img.setPixel(j,i,c,245);
+                        if(c==1) img.setPixel(j,i,c,90);
+                        if(c==2) img.setPixel(j,i,c,95);
+                    }
+                    else if (color==3) {
+                        if(c==0) img.setPixel(j,i,c,70);
+                        if(c==1) img.setPixel(j,i,c,150);
+                        if(c==2) img.setPixel(j,i,c,240);
+                    }
+                    else if (color==4) {
+                        if(c==0) img.setPixel(j,i,c,70);
+                        if(c==1) img.setPixel(j,i,c,195);
+                        if(c==2) img.setPixel(j,i,c,130);
+                    }
+                }
+            }
+            for (int j=img.width-21 ; j<=img.width-11 ; ++j) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (color==1) {
+                        if(c==0) img.setPixel(j,i,c,215);
+                        if(c==1) img.setPixel(j,i,c,180);
+                        if(c==2) img.setPixel(j,i,c,140);
+                    }
+                    else if (color==2) {
+                        if(c==0) img.setPixel(j,i,c,245);
+                        if(c==1) img.setPixel(j,i,c,90);
+                        if(c==2) img.setPixel(j,i,c,95);
+                    }
+                    else if (color==3) {
+                        if(c==0) img.setPixel(j,i,c,70);
+                        if(c==1) img.setPixel(j,i,c,150);
+                        if(c==2) img.setPixel(j,i,c,240);
+                    }
+                    else if (color==4) {
+                        if(c==0) img.setPixel(j,i,c,70);
+                        if(c==1) img.setPixel(j,i,c,195);
+                        if(c==2) img.setPixel(j,i,c,130);
+                    }
+                }
+            }
+        }
+        for (int j=10 ; j<=img.width-11 ; ++j) {
+            for (int i=10 ; i<21 ; ++i) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (color==1) {
+                        if(c==0) img.setPixel(j,i,c,215);
+                        if(c==1) img.setPixel(j,i,c,180);
+                        if(c==2) img.setPixel(j,i,c,140);
+                    }
+                    else if (color==2) {
+                        if(c==0) img.setPixel(j,i,c,245);
+                        if(c==1) img.setPixel(j,i,c,90);
+                        if(c==2) img.setPixel(j,i,c,95);
+                    }
+                    else if (color==3) {
+                        if(c==0) img.setPixel(j,i,c,70);
+                        if(c==1) img.setPixel(j,i,c,150);
+                        if(c==2) img.setPixel(j,i,c,240);
+                    }
+                    else if (color==4) {
+                        if(c==0) img.setPixel(j,i,c,70);
+                        if(c==1) img.setPixel(j,i,c,195);
+                        if(c==2) img.setPixel(j,i,c,130);
+                    }
+                }
+            }
+            for (int i=img.height-21 ; i<=img.height-11 ; ++i) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (color==1) {
+                        if(c==0) img.setPixel(j,i,c,215);
+                        if(c==1) img.setPixel(j,i,c,180);
+                        if(c==2) img.setPixel(j,i,c,140);
+                    }
+                    else if (color==2) {
+                        if(c==0) img.setPixel(j,i,c,245);
+                        if(c==1) img.setPixel(j,i,c,90);
+                        if(c==2) img.setPixel(j,i,c,95);
+                    }
+                    else if (color==3) {
+                        if(c==0) img.setPixel(j,i,c,70);
+                        if(c==1) img.setPixel(j,i,c,150);
+                        if(c==2) img.setPixel(j,i,c,240);
+                    }
+                    else if (color==4) {
+                        if(c==0) img.setPixel(j,i,c,70);
+                        if(c==1) img.setPixel(j,i,c,195);
+                        if(c==2) img.setPixel(j,i,c,130);
+                    }
+                }
+            }
+        }
+        for (int i=0 ; i<img.height ; ++i) {
+            for (int j=0 ; j<10 ; ++j){
+                for (int c=0 ; c<3 ; ++c) {
+                    if (color==1) {
+                        if(c==0) img.setPixel(j,i,c,190);
+                        if(c==1) img.setPixel(j,i,c,150);
+                        if(c==2) img.setPixel(j,i,c,110);
+                    }
+                    else if (color==2) {
+                        if(c==0) img.setPixel(j,i,c,230);
+                        if(c==1) img.setPixel(j,i,c,35);
+                        if(c==2) img.setPixel(j,i,c,40);
+                    }
+                    else if (color==3) {
+                        if(c==0) img.setPixel(j,i,c,25);
+                        if(c==1) img.setPixel(j,i,c,95);
+                        if(c==2) img.setPixel(j,i,c,210);
+                    }
+                    else if (color==4) {
+                        if(c==0) img.setPixel(j,i,c,30);
+                        if(c==1) img.setPixel(j,i,c,160);
+                        if(c==2) img.setPixel(j,i,c,95);
+                    }
+                }
+            }
+            for (int j=img.width-10 ; j<img.width ; ++j) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (color==1) {
+                        if(c==0) img.setPixel(j,i,c,190);
+                        if(c==1) img.setPixel(j,i,c,150);
+                        if(c==2) img.setPixel(j,i,c,110);
+                    }
+                    else if (color==2) {
+                        if(c==0) img.setPixel(j,i,c,230);
+                        if(c==1) img.setPixel(j,i,c,35);
+                        if(c==2) img.setPixel(j,i,c,40);
+                    }
+                    else if (color==3) {
+                        if(c==0) img.setPixel(j,i,c,25);
+                        if(c==1) img.setPixel(j,i,c,95);
+                        if(c==2) img.setPixel(j,i,c,210);
+                    }
+                    else if (color==4) {
+                        if(c==0) img.setPixel(j,i,c,30);
+                        if(c==1) img.setPixel(j,i,c,160);
+                        if(c==2) img.setPixel(j,i,c,95);
+                    }
+                }
+            }
+        }
+        for (int j=0 ; j<img.width ; ++j) {
+            for (int i=0 ; i<10 ; ++i) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (color==1) {
+                        if(c==0) img.setPixel(j,i,c,190);
+                        if(c==1) img.setPixel(j,i,c,150);
+                        if(c==2) img.setPixel(j,i,c,110);
+                    }
+                    else if (color==2) {
+                        if(c==0) img.setPixel(j,i,c,230);
+                        if(c==1) img.setPixel(j,i,c,35);
+                        if(c==2) img.setPixel(j,i,c,40);
+                    }
+                    else if (color==3) {
+                        if(c==0) img.setPixel(j,i,c,25);
+                        if(c==1) img.setPixel(j,i,c,95);
+                        if(c==2) img.setPixel(j,i,c,210);
+                    }
+                    else if (color==4) {
+                        if(c==0) img.setPixel(j,i,c,30);
+                        if(c==1) img.setPixel(j,i,c,160);
+                        if(c==2) img.setPixel(j,i,c,95);
+                    }
+                }
+            }
+            for (int i=img.height-10 ; i<img.height ; ++i) {
+                for (int c=0 ; c<3 ; ++c) {
+                    if (color==1) {
+                        if(c==0) img.setPixel(j,i,c,190);
+                        if(c==1) img.setPixel(j,i,c,150);
+                        if(c==2) img.setPixel(j,i,c,110);
+                    }
+                    else if (color==2) {
+                        if(c==0) img.setPixel(j,i,c,230);
+                        if(c==1) img.setPixel(j,i,c,35);
+                        if(c==2) img.setPixel(j,i,c,40);
+                    }
+                    else if (color==3) {
+                        if(c==0) img.setPixel(j,i,c,25);
+                        if(c==1) img.setPixel(j,i,c,95);
+                        if(c==2) img.setPixel(j,i,c,210);
+                    }
+                    else if (color==4) {
+                        if(c==0) img.setPixel(j,i,c,30);
+                        if(c==1) img.setPixel(j,i,c,160);
+                        if(c==2) img.setPixel(j,i,c,95);
+                    }
+                }
+            }
+        }
+     }
+}
+
+void edges(Image& img) {
+    for (int i=0 ; i<img.height ; ++i) {
+        for (int j=0 ; j<img.width ; ++j) {
+            int a=(img.getPixel(j,i,0)+img.getPixel(j,i,1)+img.getPixel(j,i,2))/3;
+            for (int c=0 ; c<3 ; ++c) {
+                img.setPixel(j,i,c,a);
+            }
+        }
+    }
+    Image newimg=img;
+    for (int i=1 ; i<img.height-1 ; ++i) {
+        for (int j=1 ; j<img.width-1 ; ++j) {
+            if (abs(newimg.getPixel(j,i,0)-newimg.getPixel(j-1,i,0))>=20 && abs(newimg.getPixel(j,i,0)-newimg.getPixel(j,i-1,0))>=20 ) {
+                for (int c=0 ; c<3 ; ++c) {
+                    img.setPixel(j,i,c,0);
+                }
+            }
+            else {
+                for (int c=0 ; c<3 ; ++c) {
+                    img.setPixel(j,i,c,255);
+                }
+            }
+        }
+    }
+}
+
+void applymakeframe(Image& current_image) {
+    int n;
+    cout << "[1] Simple frame" << endl;
+    cout << "[2] Fancy frame" << endl;
+    cout << "Enter your choice: " << endl;
+    cin >> n;
+    int color;
+    cout << "[1] Beige" << endl;
+    cout << "[2] Red" << endl;
+    cout << "[3] blue" << endl;
+    cout << "[4] Green" << endl;
+    cout << "Enter your choice: " << endl;
+    cin >> color;
+    if (n<1 && n>2 && color<1 && color>4) {
+        cout << "Invalid choice" << endl;
+        return;
+    }
+    makeframe(current_image,n,color);
+    cout << "\nFrame filter applied\n";
+}
+
+void applyedges(Image& current_image) {
+    edges(current_image);
+    cout << "\nEdges filter applied\n";
 }
 
 void applyGrayscaleFilter(Image& current_image) {
@@ -436,7 +831,9 @@ void displayMenu() {
     cout << "[11] Sunlight  Filter\n";
     cout << "[12] Blur Filter\n";
     cout << "[13] Infrared Filter\n";
-    cout << "[14] Save current image\n";
+    cout << "[14] Make Frame Filter\n";
+    cout << "[15] Edges Filter\n";
+    cout << "[16] Save current image\n";
     cout << "[0] Exit\n";
     cout << "Enter Your Choice : ";
 }
@@ -524,7 +921,13 @@ int main() {
                 case 13:;
                     applyInfraredImages(current_image);
                     break;
-                case 14:
+                case 14: 
+                    applymakeframe(current_image);
+                    break;
+                case 15:
+                    applyedges(current_image);
+                    break;
+                case 16:
                     saveCurrentImage(current_image, current_file);
                     break;
                 default:
