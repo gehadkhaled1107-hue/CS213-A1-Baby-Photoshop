@@ -17,6 +17,9 @@
         - Filters 
         [3]Invert Image
         [7]Darken and Lighten Image
+        [11]Purple Image
+        [15]Crop Image 
+        
 
     Sara Mostafa - 20251186- S11
         - Filters 
@@ -588,6 +591,56 @@ void edges(Image& img) {
     }
 }
 
+void cropImage(Image& image) {
+    int x, y, W, H;
+    cout << "Enter x, y, W, H: ";
+    cin >> x >> y >> W >> H;
+
+    if (x < 0 || y < 0 || W <= 0 || H <= 0 || (x + W) > image.width || (y + H) > image.height) {
+        cout << "Invalid crop dimensions!" << endl;
+        return;
+    }
+
+    Image croppedImage(W, H);
+    for (int i = 0; i < H; ++i) {
+        for (int j = 0; j < W; ++j) {
+            croppedImage.setPixel(j, i, 0, image.getPixel(x + j, y + i, 0));
+            croppedImage.setPixel(j, i, 1, image.getPixel(x + j, y + i, 1));
+            croppedImage.setPixel(j, i, 2, image.getPixel(x + j, y + i, 2));
+        }
+    }
+
+    image = croppedImage;
+}
+
+void PurpleImage(Image& image) {
+    for (int i = 0; i < image.height; ++i) {
+        for (int j = 0; j < image.width; ++j) {
+            int red = image.getPixel(j, i, 0);
+            int green= image.getPixel(j, i, 1);
+            int blue  = image.getPixel(j, i, 2);
+
+            red = min(255, max(0, red + 40));
+            green = min(255, max(0, green - 30));
+            blue = min(255, max(0, blue + 60));
+
+            image.setPixel(j, i, 0, red);
+            image.setPixel(j, i, 1, green);
+            image.setPixel(j, i, 2, blue);
+        }
+    }
+}
+
+void applyPurpleImage(Image& current_Image) {
+       purpleImage(current_Image);
+        cout << "\nPurple filter applied!\n";
+}
+
+void applyCroppedImage(Image& current_Image) {
+    cropImage(current_Image);
+    cout << "\nCrop filter applied !\n";
+}
+
 void applymakeframe(Image& current_image) {
     int n;
     cout << "[1] Simple frame" << endl;
@@ -833,7 +886,9 @@ void displayMenu() {
     cout << "[13] Infrared Filter\n";
     cout << "[14] Make Frame Filter\n";
     cout << "[15] Edges Filter\n";
-    cout << "[16] Save current image\n";
+    cout << "[16] Crop Image Filter\n";
+    cout << "[17] Purple Image Filter\n";
+    cout << "[18] Save current image\n";
     cout << "[0] Exit\n";
     cout << "Enter Your Choice : ";
 }
@@ -928,6 +983,12 @@ int main() {
                     applyedges(current_image);
                     break;
                 case 16:
+                    applyCroppedImage(current_image);
+                    break;
+                case 17:
+                    applyPurpleImage(current_Image);
+                    break;
+                case 18:
                     saveCurrentImage(current_image, current_file);
                     break;
                 default:
