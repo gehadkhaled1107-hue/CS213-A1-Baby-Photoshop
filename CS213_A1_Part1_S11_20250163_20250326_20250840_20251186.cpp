@@ -298,6 +298,7 @@ void applyResizingImages(Image& currentImage) {
     currentImage = resized;
     cout << "\nImage resized\n";
 }
+
 void Blur_Images(Image& img,Image& Blurred_Image) {
     for (int x = 0;x < img.width;x++) {
         for (int y = 0;y < img.height;y++) {
@@ -319,10 +320,26 @@ void Blur_Images(Image& img,Image& Blurred_Image) {
         }
     }
 }
-void applyBlurImages(Image& current_image) {
-    Blurred_Image(current_image.width,current_image.height);
-    Blur_Images(current_image,Blurred_Image);
+
+void applyBlurImages(Image& currentImage) {
+    Image Blurred_Image(currentImage.width,currentImage.height);
+    Blur_Images(currentImage,Blurred_Image);
     cout << "\nBlur filter applied\n";
+}
+
+void Infrared_Images(Image& img) {
+    for(int i = 0;i < img.width;i++) {
+        for (int j = 0;j < img.height;j++) {
+            img(i,j,0) = 255;
+            img(i,j,1) = 255 - img(i,j,1);
+            img(i,j,2) = 255 - img(i,j,2);
+        }
+    }
+}
+
+void applyInfraredImages(Image& currentImage) {
+    Infrared_Images(currentImage);
+    cout << "\nInfrared filter applied\n";
 }
 
 void applyMergeFilter(Image& currentImage){
@@ -418,7 +435,8 @@ void displayMenu() {
     cout << "[10] Merge Images Filter\n";
     cout << "[11] Sunlight  Filter\n";
     cout << "[12] Blur Filter\n";
-    cout << "[13] Save current image\n";
+    cout << "[13] Infrared Filter\n";
+    cout << "[14] Save current image\n";
     cout << "[0] Exit\n";
     cout << "Enter Your Choice : ";
 }
@@ -503,7 +521,10 @@ int main() {
                 case 12:
                     applyBlurImages(current_image);
                     break;
-                case 13:
+                case 13:;
+                    applyInfraredImages(current_image);
+                    break;
+                case 14:
                     saveCurrentImage(current_image, current_file);
                     break;
                 default:
