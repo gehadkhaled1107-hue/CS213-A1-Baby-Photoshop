@@ -20,6 +20,8 @@
         - Filters 
         [2]Black and White
         [8]Resizing Images
+        [12]Blur Images
+        [16]Infrared Image
 */
 
 #include "Image_Class.h"
@@ -285,7 +287,7 @@ void applyDarkLight(Image& currentImage) {
 void applyBlackAndWhite(Image& currentImage) {
     Black_and_White(currentImage);
     cout << "\nBlack & White filter applied\n";
-        }
+}
 
 void applyResizingImages(Image& currentImage) {
     int newW, newH;
@@ -295,6 +297,32 @@ void applyResizingImages(Image& currentImage) {
     Resizing_Images(currentImage, resized, newW, newH);
     currentImage = resized;
     cout << "\nImage resized\n";
+}
+void Blur_Images(Image& img,Image& Blurred_Image) {
+    for (int x = 0;x < img.width;x++) {
+        for (int y = 0;y < img.height;y++) {
+            for (int k = 0;k < 3;k++) {
+                int sum = 0;
+                int count = 0;
+                for (int dx = -1;dx <= 1;dx++) {
+                    for (int dy = -1;dy <= 1;dy++) {
+                        int i = x + dx;
+                        int j = y + dy;
+                        if (i >= 0 && i < img.width && j >= 0 && j < img.height) {
+                            sum += img(i,j,k);
+                            count++;
+                        }
+                    }
+                }
+                Blurred_Image(x,y,k) = sum / count;
+            }
+        }
+    }
+}
+void applyBlurImages(Image& current_image) {
+    Blurred_Image(current_image.width,current_image.height);
+    Blur_Images(current_image,Blurred_Image);
+    cout << "\nBlur filter applied\n";
 }
 
 void applyMergeFilter(Image& currentImage){
@@ -389,7 +417,8 @@ void displayMenu() {
     cout << "[9] Resizing Images Filter\n";
     cout << "[10] Merge Images Filter\n";
     cout << "[11] Sunlight  Filter\n";
-    cout << "[12] Save current image\n";
+    cout << "[12] Blur Filter\n";
+    cout << "[13] Save current image\n";
     cout << "[0] Exit\n";
     cout << "Enter Your Choice : ";
 }
@@ -472,6 +501,9 @@ int main() {
                     applySunlightFilter(current_image);
                     break;
                 case 12:
+                    applyBlurImages(current_image);
+                    break;
+                case 13:
                     saveCurrentImage(current_image, current_file);
                     break;
                 default:
