@@ -8,7 +8,7 @@
 
     Shahd Mohamed- 20250326 - S11
         - Filters 
-        [4]Adding a Frame to the Picture
+        [2]Black and White
         [6]Rotate Image
         [10]Detect Image Edges
         [14]TV images
@@ -23,7 +23,7 @@
 
     Sara Mostafa - 20251186- S11
         - Filters 
-        [2]Black and White
+        [4]Adding a Frame to the Picture
         [8]Resizing Images
         [12]Blur Images
         [16]Infrared Image
