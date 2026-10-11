@@ -837,6 +837,43 @@ void applyInfraredImages(Image& currentImage) {
     cout << "\nInfrared filter applied\n";
 }
 
+void Skewed_Images(Image& img,,Image& skewed_image) {
+    for (int i = 0;i < new_width;++i) {
+        for (int j = 0;j < org_height;++j) {
+            for (int k = 0;k < 3;++k) {
+                skewed_image(i,j,k) = 0;
+            }
+        }
+    }
+    for (int x = 0;x < org_width;++x) {
+        for (int y = 0;y < org_height;++y) {
+            int offset = (org_height - 1 - y) * skew_factor;
+            int new_x = x + offset; 
+            if (new_x >= 0 && new_x < new_width) {
+                for (int k = 0;k < 3;++k) {
+                    skewed_image(new_x,y,k) = img(x,y,k);
+                }
+            }
+        }
+    }
+}
+
+void applySkewedImages(Image& currentImage) {
+    double angle_degree;
+    cout << "Enter the skew angle (in degrees): ";
+    cin >> angle_degree;
+    double angle_rad = (angle_degree * 3.14159265 / 180.0);
+    double skew_factor = tan(angle_rad);
+    int org_width = img.width;
+    int org_height = img.height;
+    int max_shift = abs(skew_factor * org_height);
+    int new_width = org_width + max_shift;
+    Image skewed_image(new_width,org_height);
+    Skewed_Images(currentImage,skewed_image);
+    currentImage = skewed_image;
+    cout << "\nSkewed filter applied\n";
+}
+
 void applyMergeFilter(Image& currentImage){
     string second_file;
     Image merge_image;
@@ -936,7 +973,8 @@ void displayMenu() {
     cout << "[16] Crop Image Filter\n";
     cout << "[17] Purple Image Filter\n";
     cout << "[18] Oil Image Filter\n";
-    cout << "[19] Save current image\n";
+    cout << "[19] Skewed Image Filter\n";
+    cout << "[20] Save current image\n";
     cout << "[0] Exit\n";
     cout << "Enter Your Choice : ";
 }
@@ -1040,6 +1078,9 @@ int main() {
                     applyoilImage(current_Image);
                     break;
                 case 19:
+                    applySkewedImages(current_Image);
+                    break;
+                case 20:
                     saveCurrentImage(current_image, current_file);
                     break;
                 default:
