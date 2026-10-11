@@ -631,6 +631,53 @@ void PurpleImage(Image& image) {
     }
 }
 
+void oilImage(Image& img) {
+    Image img2=img;
+    for (int i=0 ; i<img.height ; ++i) {
+        for (int j=0 ; j<img.width ; ++j) {
+            int R,B,G;
+            vector <int> v(100,0);
+            vector <int> v1(100,0),v2(100,0),v3(100,0);
+            for (int r=-1 ; r<=1 ; ++r) {
+                for (int c=-1 ; c<=1 ; ++c) {
+                    int ni=i+r;
+                    int nj=j+c;
+                    if (ni>=0 && ni<img.height && nj>=0 && nj<img.width) {
+                        R=img2.getPixel(nj,ni,0);
+                        G=img2.getPixel(nj,ni,1);
+                        B=img2.getPixel(nj,ni,2);
+                        int average=(R+G+B)/3;
+                        int l=(average*100)/256;
+                        ++v[l];
+                        v1[l]+=R;
+                        v2[l]+=G;
+                        v3[l]+=B;
+                    }
+                }
+            }
+            int maxi=0;
+            int level=0;
+            for (int k=0 ; k<100 ; ++k) {
+                if (v[k]>maxi) {
+                    maxi=v[k];
+                    level=k;
+                }
+            }
+            int RED=v1[level]/v[level];
+            int GREEN=v2[level]/v[level];
+            int BLUE=v3[level]/v[level];
+            img.setPixel(j,i,0,RED);
+            img.setPixel(j,i,1,GREEN);
+            img.setPixel(j,i,2,BLUE);
+
+        }
+    }
+}
+void applyoilImage (Image& current_Image) {
+    oilImage(current_Image);
+    cout << "\nOil filter applied!\n";
+}
+
 void applyPurpleImage(Image& current_Image) {
        purpleImage(current_Image);
         cout << "\nPurple filter applied!\n";
@@ -888,7 +935,8 @@ void displayMenu() {
     cout << "[15] Edges Filter\n";
     cout << "[16] Crop Image Filter\n";
     cout << "[17] Purple Image Filter\n";
-    cout << "[18] Save current image\n";
+    cout << "[18] Oil Image Filter\n";
+    cout << "[19] Save current image\n";
     cout << "[0] Exit\n";
     cout << "Enter Your Choice : ";
 }
@@ -989,6 +1037,9 @@ int main() {
                     applyPurpleImage(current_Image);
                     break;
                 case 18:
+                    applyoilImage(current_Image);
+                    break;
+                case 19:
                     saveCurrentImage(current_image, current_file);
                     break;
                 default:
