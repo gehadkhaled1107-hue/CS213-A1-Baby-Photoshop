@@ -837,7 +837,7 @@ void applyInfraredImages(Image& currentImage) {
     cout << "\nInfrared filter applied\n";
 }
 
-void Skewed_Images(Image& img,,Image& skewed_image) {
+void Skewed_Images(Image& img,Image& skewed_image,int org_width,int org_height,int new_width,double skew_factor) {
     for (int i = 0;i < new_width;++i) {
         for (int j = 0;j < org_height;++j) {
             for (int k = 0;k < 3;++k) {
@@ -864,12 +864,12 @@ void applySkewedImages(Image& currentImage) {
     cin >> angle_degree;
     double angle_rad = (angle_degree * 3.14159265 / 180.0);
     double skew_factor = tan(angle_rad);
-    int org_width = img.width;
-    int org_height = img.height;
+    int org_width = currentImage.width;
+    int org_height = currentImage.height;
     int max_shift = abs(skew_factor * org_height);
     int new_width = org_width + max_shift;
     Image skewed_image(new_width,org_height);
-    Skewed_Images(currentImage,skewed_image);
+    Skewed_Images(currentImage,skewed_image,org_width,org_height,new_width,skew_factor);
     currentImage = skewed_image;
     cout << "\nSkewed filter applied\n";
 }
