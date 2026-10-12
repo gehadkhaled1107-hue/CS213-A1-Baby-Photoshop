@@ -35,7 +35,13 @@
             [12]Blur Images
             [16]Infrared Image
             [17]Image Skewing Filter
-    Menu is a team work
+    Shared team work:
+        All four team members collaborated on:
+            - Menu, image loading, and image saving.
+            - Filter 17: Image Skewing.
+            - Filter 18: Oil Painting.
+            - GUI development and integration.
+            - Integration and testing of all filters.
     Video demo: https://drive.google.com/file/d/1oKOljr7I7lT48hSryqmTCPZ3bc1FJVLj/view?usp=drivesdk
     Shared document: https://docs.google.com/document/d/1tuVbLy5fPn-VuRsbBsRED4HcbU98iCNy/edit?usp=drive_link&ouid=114385788039595595965&rtpof=true&sd=true
 */
