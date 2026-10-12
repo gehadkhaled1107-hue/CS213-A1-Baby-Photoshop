@@ -8,8 +8,7 @@
             [1]Grayscale Conversion
             [5]Flip Image
             [9]Merge Images
-            [13]Sunlight 
-            GUI
+            [13]Sunlight
 
         Shahd Mohamed- 20250326 - S11
             - Filters 
@@ -17,7 +16,6 @@
             [6]Rotate Image
             [10]Detect Image Edges
             [14]TV images
-            [18]oil painting
     
         Sara Yasser - 20250840 - S11
             - Filters 
@@ -25,16 +23,13 @@
             [7]Darken and Lighten Image
             [11]Crop Image 
             [15]Purple Image 
-            GUI
             
-    
         Sara Mostafa - 20251186- S11
             - Filters 
             [4]Adding a Frame to the Picture
             [8]Resizing Images
             [12]Blur Images
             [16]Infrared Image
-            [17]Image Skewing Filter
     Shared team work:
         All four team members collaborated on:
             - Menu, image loading, and image saving.
