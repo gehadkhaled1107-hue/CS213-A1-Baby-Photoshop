@@ -5,6 +5,7 @@
         [5]Flip Image
         [9]Merge Images
         [13]Sunlight 
+        GUI
 
     Shahd Mohamed- 20250326 - S11
         - Filters 
@@ -12,6 +13,7 @@
         [6]Rotate Image
         [10]Detect Image Edges
         [14]TV images
+        [18]oil painting
 
     Sara Yasser - 20250840 - S11
         - Filters 
@@ -19,6 +21,7 @@
         [7]Darken and Lighten Image
         [11]Purple Image
         [15]Crop Image 
+        GUI
         
 
     Sara Mostafa - 20251186- S11
@@ -27,6 +30,7 @@
         [8]Resizing Images
         [12]Blur Images
         [16]Infrared Image
+        [17]Image Skewing Filter
 */
 
 #include "Image_Class.h"
