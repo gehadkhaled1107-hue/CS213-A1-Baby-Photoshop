@@ -139,35 +139,6 @@ void Resizing_Images(Image& img, Image& resized_img, int newW, int newH) {
     }
 }
 
-Image mergingPixels(Image& img1, Image& img2, float blend_factor){
-    Image merged_image(img1.width , img1.height);
-    for (int column = 0 ; column < img1.width ; column++ ){
-        for (int row = 0 ; row < img1.height ; row++ ){
-            for (int channel =0 ; channel<3 ; channel++){
-                merged_image(column , row, channel) = (img1(column , row , channel )*blend_factor) + (img2(column , row , channel )*(1 - blend_factor));
-            }
-        }
-    } 
-    return merged_image;
-}
-
-Image mergeFilter(Image& img1, Image& img2, float blend_factor = 0.5){
-    if ((img1.height == img2.height) && (img1.width == img2.width)){
-        Image merged_image = mergingPixels(img1, img2, blend_factor);
-        return merged_image;
-    } else {
-        int resize_width = min(img1.width, img2.width);
-        int resize_height = min(img1.height, img2.height);
-        
-        Image resized_img1(resize_width , resize_height);
-        Image resized_img2(resize_width , resize_height);
-        
-        Resizing_Images(img1, resized_img1 ,resize_width ,resize_height);
-        Resizing_Images(img2, resized_img2 ,resize_width ,resize_height);
-        Image merged_image = mergingPixels(resized_img1, resized_img2, blend_factor);
-        return merged_image;
-    }
-}
 
 void sunlightFilter(Image& img) {
     for (int column = 0 ; column < img.width ; column++ ){
@@ -566,7 +537,7 @@ bool cropImage(Image& image, int x, int y, int W, int H) {
     if (x < 0 || y < 0 || W <= 0 || H <= 0 || (x + W) > image.width || (y + H) > image.height) {
         return false;
     }
-
+    
     Image croppedImage(W, H);
     for (int i = 0; i < H; ++i) {
         for (int j = 0; j < W; ++j) {
@@ -580,6 +551,50 @@ bool cropImage(Image& image, int x, int y, int W, int H) {
     return true;
 }
 
+Image mergingPixels(Image& img1, Image& img2, float blend_factor){
+    Image merged_image(img1.width , img1.height);
+    for (int column = 0 ; column < img1.width ; column++ ){
+        for (int row = 0 ; row < img1.height ; row++ ){
+            for (int channel =0 ; channel<3 ; channel++){
+                merged_image(column , row, channel) = (img1(column , row , channel )*blend_factor) + (img2(column , row , channel )*(1 - blend_factor));
+            }
+        }
+    } 
+    return merged_image;
+}
+
+Image mergeFilter(Image& img1, Image& img2, int option, float blend_factor = 0.5) {
+    if ((img1.height == img2.height) && (img1.width == img2.width)) {
+        return mergingPixels(img1, img2, blend_factor);
+    }
+
+    if (option == 1) {
+        int new_width  = max(img1.width,  img2.width);
+        int new_height = max(img1.height, img2.height);
+
+        Image resized_img1(new_width, new_height);
+        Image resized_img2(new_width, new_height);
+
+        Resizing_Images(img1, resized_img1, new_width, new_height);
+        Resizing_Images(img2, resized_img2, new_width, new_height);
+
+        return mergingPixels(resized_img1, resized_img2, blend_factor);
+    }
+    else {
+        int common_width  = min(img1.width,  img2.width);
+        int common_height = min(img1.height, img2.height);
+
+        Image cropped_img1 = img1;
+        Image cropped_img2 = img2;
+
+        cropImage(cropped_img1, 0, 0, common_width, common_height);
+        cropImage(cropped_img2, 0, 0, common_width, common_height);
+
+        return mergingPixels(cropped_img1, cropped_img2, blend_factor);
+    }
+}
+
+
 void PurpleImage(Image& image) {
     for (int i = 0; i < image.height; ++i) {
         for (int j = 0; j < image.width; ++j) {
@@ -590,7 +605,7 @@ void PurpleImage(Image& image) {
             red = min(255, max(0, red + 40));
             green = min(255, max(0, green - 30));
             blue = min(255, max(0, blue + 60));
-
+            
             image.setPixel(j, i, 0, red);
             image.setPixel(j, i, 1, green);
             image.setPixel(j, i, 2, blue);

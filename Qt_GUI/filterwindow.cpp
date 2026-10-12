@@ -506,13 +506,18 @@ void FilterWindow::onMergeClicked()
     }
 
     bool ok = false;
+    int option = QInputDialog::getInt(
+        this, "Merge", "1 = Resize to biggest, 2 = Crop common area:",
+        1, 1, 2, 1, &ok);
+    if (!ok) return;
+
     double blend = QInputDialog::getDouble(
         this, "Merge", "Blend factor (0 = second image only, 1 = current image only):",
         0.5, 0.0, 1.0, 2, &ok);
     if (!ok) return;
 
     backupBeforeFilter();
-    currentImage = mergeFilter(currentImage, secondImage, (float)blend);
+    currentImage = mergeFilter(currentImage, secondImage, option, (float)blend);
     modified = true;
     refreshDisplay();
 }
