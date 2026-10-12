@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FilterWindow</class>
+ <widget class="QWidget" name="FilterWindow">
+  <property name="geometry"><rect><x>0</x><y>0</y><width>1100</width><height>720</height></rect></property>
+  <property name="minimumSize"><size><width>640</width><height>480</height></size></property>
+  <property name="windowTitle"><string>Baby Photoshop</string></property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#FilterWindow { background-color: #000000; }
+QPushButton, QToolButton { background-color: #0D3B1E; color: #FFFFFF; font-weight: bold; border-radius: 6px; }
+QPushButton { padding: 8px 24px; }
+QToolButton { padding: 8px; }
+QPushButton:hover, QToolButton:hover { background-color: #14552d; }
+QPushButton:pressed, QToolButton:pressed { background-color: #092a15; }
+QScrollArea { background: transparent; border: none; }
+QScrollArea &gt; QWidget &gt; QWidget { background: transparent; }
+QLabel#imageLabel { color: #CCCCCC; }</string>
+  </property>
+  <layout class="QVBoxLayout" name="mainLayout" stretch="0,1,0">
+   <property name="spacing"><number>10</number></property>
+   <property name="leftMargin"><number>12</number></property>
+   <property name="topMargin"><number>12</number></property>
+   <property name="rightMargin"><number>12</number></property>
+   <property name="bottomMargin"><number>8</number></property>
+   <item>
+    <layout class="QHBoxLayout" name="topBarLayout">
+     <item>
+      <widget class="QPushButton" name="loadPushButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed"><horstretch>1</horstretch><verstretch>0</verstretch></sizepolicy>
+       </property>
+       <property name="minimumSize"><size><width>0</width><height>40</height></size></property>
+       <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+       <property name="text"><string>Load New Image</string></property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="savePushButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed"><horstretch>1</horstretch><verstretch>0</verstretch></sizepolicy>
+       </property>
+       <property name="minimumSize"><size><width>0</width><height>40</height></size></property>
+       <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+       <property name="text"><string>Save</string></property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="undoPushButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed"><horstretch>1</horstretch><verstretch>0</verstretch></sizepolicy>
+       </property>
+       <property name="minimumSize"><size><width>0</width><height>40</height></size></property>
+       <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+       <property name="text"><string>Undo</string></property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="exitPushButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed"><horstretch>1</horstretch><verstretch>0</verstretch></sizepolicy>
+       </property>
+       <property name="minimumSize"><size><width>0</width><height>40</height></size></property>
+       <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+       <property name="text"><string>Exit</string></property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="imageLabel">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Ignored" vsizetype="Ignored"><horstretch>1</horstretch><verstretch>1</verstretch></sizepolicy>
+     </property>
+     <property name="minimumSize"><size><width>200</width><height>150</height></size></property>
+     <property name="text"><string/></property>
+     <property name="alignment"><set>Qt::AlignCenter</set></property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QScrollArea" name="filterScrollArea">
+     <property name="minimumSize"><size><width>0</width><height>185</height></size></property>
+     <property name="maximumSize"><size><width>16777215</width><height>185</height></size></property>
+     <property name="frameShape"><enum>QFrame::NoFrame</enum></property>
+     <property name="verticalScrollBarPolicy"><enum>Qt::ScrollBarAlwaysOff</enum></property>
+     <property name="horizontalScrollBarPolicy"><enum>Qt::ScrollBarAsNeeded</enum></property>
+     <property name="widgetResizable"><bool>true</bool></property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <layout class="QHBoxLayout" name="filtersLayout">
+       <property name="spacing"><number>8</number></property>
+       <property name="topMargin"><number>4</number></property>
+       <property name="bottomMargin"><number>4</number></property>
+       <item>
+        <widget class="QToolButton" name="skewButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Skew</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/skew.png</normaloff>:/skew.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="oilButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Oil Painting</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/oil.png</normaloff>:/oil.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="purpleButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Purple</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/purple.png</normaloff>:/purple.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="cropButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Crop</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/crop.png</normaloff>:/crop.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="edgesButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Edges</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/edges.png</normaloff>:/edges.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="frameButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Frame</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/frame.png</normaloff>:/frame.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="infraredButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Infrared</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/infrared.png</normaloff>:/infrared.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="blurButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Blur</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/blur.png</normaloff>:/blur.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="sunlightButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Sunlight</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/sunlight.png</normaloff>:/sunlight.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="mergeButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Merge</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/merge.png</normaloff>:/merge.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="resizeButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Resize</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/resize.png</normaloff>:/resize.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="bwButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Black &amp;&amp; White</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/bw.png</normaloff>:/bw.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="darkLightButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Darken / Lighten</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/darkLight.png</normaloff>:/darkLight.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="invertButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Invert</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/invert.png</normaloff>:/invert.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="tvButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Television</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/tv.png</normaloff>:/tv.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="rotateButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Rotate</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/rotate.png</normaloff>:/rotate.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="flipButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Flip</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/flip.png</normaloff>:/flip.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="grayscaleButton">
+         <property name="minimumSize"><size><width>135</width><height>135</height></size></property>
+         <property name="maximumSize"><size><width>170</width><height>170</height></size></property>
+         <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+         <property name="text"><string>Grayscale</string></property>
+         <property name="icon">
+          <iconset resource="resources.qrc"><normaloff>:/grayscale.png</normaloff>:/grayscale.png</iconset>
+         </property>
+         <property name="iconSize"><size><width>80</width><height>80</height></size></property>
+         <property name="toolButtonStyle"><enum>Qt::ToolButtonTextUnderIcon</enum></property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

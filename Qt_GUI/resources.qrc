@@ -1,0 +1,23 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="blur.png">filter_ui/blur.png</file>
+    <file alias="bw.png">filter_ui/bw.png</file>
+    <file alias="crop.png">filter_ui/crop.png</file>
+    <file alias="darkLight.png">filter_ui/darkLight.png</file>
+    <file alias="edges.png">filter_ui/edges.png</file>
+    <file alias="flip.png">filter_ui/flip.png</file>
+    <file alias="frame.png">filter_ui/frame.png</file>
+    <file alias="grayscale.png">filter_ui/grayscale.png</file>
+    <file alias="infrared.png">filter_ui/infrared.png</file>
+    <file alias="invert.png">filter_ui/invert.png</file>
+    <file alias="merge.png">filter_ui/merge.png</file>
+    <file alias="oil.png">filter_ui/oil.png</file>
+    <file alias="original.png">filter_ui/original.png</file>
+    <file alias="purple.png">filter_ui/purple.png</file>
+    <file alias="resize.png">filter_ui/resize.png</file>
+    <file alias="rotate.png">filter_ui/rotate.png</file>
+    <file alias="skew.png">filter_ui/skew.png</file>
+    <file alias="sunlight.png">filter_ui/sunlight.png</file>
+    <file alias="tv.png">filter_ui/tv.png</file>
+  </qresource>
+</RCC>
