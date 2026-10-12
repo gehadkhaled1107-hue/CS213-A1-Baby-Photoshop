@@ -23,8 +23,8 @@
             - Filters 
             [3]Invert Image
             [7]Darken and Lighten Image
-            [11]Purple Image
-            [15]Crop Image 
+            [11]Crop Image 
+            [15]Purple Image 
             GUI
             
     
