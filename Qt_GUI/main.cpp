@@ -36,7 +36,7 @@
             [16]Infrared Image
             [17]Image Skewing Filter
     Video demo: https://drive.google.com/file/d/1oKOljr7I7lT48hSryqmTCPZ3bc1FJVLj/view?usp=drivesdk
-    Shared document: 
+    Shared document: https://docs.google.com/document/d/1tuVbLy5fPn-VuRsbBsRED4HcbU98iCNy/edit?usp=drive_link&ouid=114385788039595595965&rtpof=true&sd=true
 */
 #include "widget.h"
 #include <QApplication>
