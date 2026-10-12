@@ -4,12 +4,12 @@
     Description: Loads images, applies filters, and saves results.
     Team and work distribution:
         Gehad Khaled - 20250163 - S11
-        - Filters 
-        [1]Grayscale Conversion
-        [5]Flip Image
-        [9]Merge Images
-        [13]Sunlight 
-        GUI
+            - Filters 
+            [1]Grayscale Conversion
+            [5]Flip Image
+            [9]Merge Images
+            [13]Sunlight 
+            GUI
 
         Shahd Mohamed- 20250326 - S11
             - Filters 
@@ -23,8 +23,8 @@
             - Filters 
             [3]Invert Image
             [7]Darken and Lighten Image
-            [11]Purple Image
-            [15]Crop Image 
+            [11]Crop Image 
+            [15]Purple Image 
             GUI
             
     
@@ -35,6 +35,7 @@
             [12]Blur Images
             [16]Infrared Image
             [17]Image Skewing Filter
+    Menu is a team work
     Video demo: https://drive.google.com/file/d/1oKOljr7I7lT48hSryqmTCPZ3bc1FJVLj/view?usp=drivesdk
     Shared document: https://docs.google.com/document/d/1tuVbLy5fPn-VuRsbBsRED4HcbU98iCNy/edit?usp=drive_link&ouid=114385788039595595965&rtpof=true&sd=true
 */
