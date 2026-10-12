@@ -731,19 +731,31 @@ void Infrared_Images(Image& img) {
 }
 
 void Skewed_Images(Image& img,Image& skewed_image,int org_width,int org_height,int new_width,double skew_factor) {
+    int min_x = 0;
+    for (int y = 0;y < org_height;++y) {
+        int offset = (org_height - 1 - y) * skew_factor;
+        if (offset < min_x) {
+            min_x = offset;
+        }
+    }
+    
+    int x_shift = (min_x < 0) ? -min_x : 0;
+
     for (int i = 0;i < new_width;++i) {
         for (int j = 0;j < org_height;++j) {
             for (int k = 0;k < 3;++k) {
-                skewed_image(i,j,k) = 0;
+                skewed_image(i, j, k) = 0;
             }
         }
     }
+
     for (int x = 0;x < org_width;++x) {
         for (int y = 0;y < org_height;++y) {
             int offset = (org_height - 1 - y) * skew_factor;
-            int new_x = x + offset; 
+            int new_x = x + offset + x_shift; 
+            
             if (new_x >= 0 && new_x < new_width) {
-                for (int k = 0;k < 3;++k) {
+                for (int k = 0; k < 3; ++k) {
                     skewed_image(new_x,y,k) = img(x,y,k);
                 }
             }
