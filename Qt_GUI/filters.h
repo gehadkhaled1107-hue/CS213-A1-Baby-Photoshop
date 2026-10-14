@@ -233,11 +233,6 @@ void makeframe(Image& img , int n , int color) {
                           if(c==1) img.setPixel(j,i,c,160);
                           if(c==2) img.setPixel(j,i,c,95);
                        }
-                       else if (color==5) {
-                          if(c==0) img.setPixel(j,i,c,0);
-                          if(c==1) img.setPixel(j,i,c,0);
-                          if(c==2) img.setPixel(j,i,c,0);
-                       }
                     }
                 }
 
